@@ -102,4 +102,25 @@ void QuickSort(int array[], int size)
 	_QuickSort(array, 0, size - 1);
 }
 
+void BubbleSort(int array[], int size)
+{
+	for (int i = 0; i < size-1; i++)
+	{
+		int flag = 0;
+		for (int j = 0; j < size-1-i; j++)
+		{
+			if (array[j] > array[j + 1])
+			{
+				Swap(array + j, array + j + 1);	
+			}
+			flag++;
+		}
+		if (flag == 1)
+		{
+			return;
+		}
+	}
+}
 
+
+void 
