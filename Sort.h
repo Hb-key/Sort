@@ -123,4 +123,17 @@ void BubbleSort(int array[], int size)
 }
 
 
-void 
+void InsertSort(int array[], int size)
+{ 
+	for (int i = 1; i < size; i++) {
+		if (array[i] < array[i - 1]) {
+			int j = i - 1;
+			int tmp = array[i];
+			while (tmp < array[j]) {
+				array[j + 1] = array[j];
+				j--;
+			}
+			array[j + 1] = tmp;
+		}
+	}
+}
