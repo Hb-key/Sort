@@ -125,15 +125,58 @@ void BubbleSort(int array[], int size)
 
 void InsertSort(int array[], int size)
 { 
-	for (int i = 1; i < size; i++) {
-		if (array[i] < array[i - 1]) {
+	for (int i = 1; i < size; i++)
+	{
+		if (array[i] < array[i - 1]) 
+		{
 			int j = i - 1;
 			int tmp = array[i];
-			while (tmp < array[j]) {
+			while (tmp < array[j]) 
+			{
 				array[j + 1] = array[j];
 				j--;
 			}
 			array[j + 1] = tmp;
+		}
+	}
+}
+
+void __InsertSort(int array[], int size, int gap)
+{
+	for (int g = 0; g < gap; g++)
+	{
+		int i, j;
+		int tmp;
+		for (i = gap + g; i < size; i += gap)
+		{
+			tmp = array[i];
+			for (j = i - gap; j >= 0; j -= gap)
+			{
+				if (tmp >= array[j])
+				{
+					break;
+				}
+				else
+				{
+					array[j + gap] = array[j];
+				}
+			}
+			array[j + gap] = tmp;
+		}
+	}
+}
+
+void ShellSort(int array[], int size)
+{
+	int gap = size;
+	while (1)
+	{
+		gap = gap / 3 + 1;
+		__InsertSort(array, size, gap);
+
+		if (gap == 1)
+		{
+			break;
 		}
 	}
 }
