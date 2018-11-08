@@ -180,3 +180,88 @@ void ShellSort(int array[], int size)
 		}
 	}
 }
+
+void SelectSort(int array[], int size)//找最大的数
+{
+	for (int i = 1; i < size; i++)
+	{
+		int max = 0;
+		for (int j = 1; j < i; j++)
+		{
+			if (array[j] > array[max])
+				max = j;
+		}
+		Swap(array + max, array + i - 1);
+	}
+}
+
+void SelectSortOP(int array[], int size)//最大最小一起找 
+{
+	int left = 0;
+	int right = size - 1;
+	while (left < right)
+	{
+		int min = left;
+		int max = left;
+		for (int j = left + 1; j <= right; j++)
+		{
+			if (array[j] > array[max])
+			{
+				max = j;
+			}
+			if (array[j] < array[min])
+			{
+				min = j;
+			}
+		}
+		Swap(array + left, array + min);
+		if (max = left)
+		{
+			max = min;
+		}
+		Swap(array + right, array + max);
+	}
+}
+
+void AdjustDown(int array[],int size,int root)
+{
+	int left = 2 * root + 1;
+	int right = 2 * root + 2;
+	//左孩子越界
+	if (left >= size)
+	{
+		return;
+	}
+	//假设左孩子最大
+	int max = left;
+	//存在右孩子，右>左
+	if (right < size && array[right] > array[left])
+	{
+		max = right;	
+	}
+	if (array[root] >= array[max])
+	{
+		return;
+	}
+	Swap(array + root, array + max);
+	AdjustDown(array, size, max);
+}
+
+void CreateHeap(int array[], int size)
+{
+	//最后一个非叶子节点(最后一个结点的双亲节点)->0
+	for (int i = size / 2 - 1; i >= 0; i--)
+	{
+		AdjustDown(array, size, i);
+	}
+}
+
+void HeapSort(int array[], int size)//升序建大堆
+{
+	CreateHeap(array, size);
+	for (int i = 0; i < size; i++)
+	{
+		Swap(&array[0], &array[size - i - 1]);
+		AdjustDown(array, size - 1 - i, 0);
+	}
+}
