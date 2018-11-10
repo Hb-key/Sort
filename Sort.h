@@ -2,6 +2,7 @@
 
 #include<stdio.h>
 
+
 void Swap(int *a, int *b)
 {
 	int tmp = *a;
@@ -263,5 +264,43 @@ void HeapSort(int array[], int size)//升序建大堆
 	{
 		Swap(&array[0], &array[size - i - 1]);
 		AdjustDown(array, size - 1 - i, 0);
+	}
+}
+#include<malloc.h>
+void Merge(int array[], int Temp[], int L, int R, int RightEnd)//合并两个有序序列
+{
+	int LeftEnd = R - 1;
+	int p = L, i;
+	int num = RightEnd - L + 1;
+	while (L <= LeftEnd && R <= RightEnd)
+		if (array[L] <= array[R])
+			Temp[p++] = array[L++];
+		else
+			Temp[p++] = array[R++];
+	while (L <= LeftEnd)
+		Temp[p++] = array[L++];
+	while (R <= RightEnd)
+		Temp[p++] = array[R++];
+	for (i = 0; i<num; i++, RightEnd--)
+		array[RightEnd] = Temp[RightEnd];
+}
+void MSort(int array[], int Temp[], int L, int RightEnd)
+{
+	int center;
+	if (L<RightEnd)
+	{
+		center = (L + RightEnd) / 2;
+		MSort(array, Temp, L, center);
+		MSort(array, Temp, center + 1, RightEnd);
+		Merge(array, Temp, L, center + 1, RightEnd);
+	}
+}
+void Mergesort(int array[], int size)
+{
+	int *Temp = (int *)malloc(size * sizeof(int));
+	if (Temp)
+	{
+		MSort(array, Temp, 0, size - 1);
+		free(Temp);
 	}
 }
