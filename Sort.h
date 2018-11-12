@@ -267,40 +267,94 @@ void HeapSort(int array[], int size)//升序建大堆
 	}
 }
 #include<malloc.h>
-void Merge(int array[], int Temp[], int L, int R, int RightEnd)//合并两个有序序列
+//void Merge(int array[], int Temp[], int L, int R, int RightEnd)//合并两个有序序列
+//{
+//	int LeftEnd = R - 1;
+//	int p = L, i;
+//	int num = RightEnd - L + 1;
+//	while (L <= LeftEnd && R <= RightEnd)
+//		if (array[L] <= array[R])
+//			Temp[p++] = array[L++];
+//		else
+//			Temp[p++] = array[R++];
+//	while (L <= LeftEnd)
+//		Temp[p++] = array[L++];
+//	while (R <= RightEnd)
+//		Temp[p++] = array[R++];
+//	for (i = 0; i<num; i++, RightEnd--)
+//		array[RightEnd] = Temp[RightEnd];
+//}
+
+//void MSort(int array[], int Temp[], int L, int RightEnd)
+//{
+//	int center;
+//	if (L<RightEnd)
+//	{
+//		center = (L + RightEnd) / 2;
+//		MSort(array, Temp, L, center);
+//		MSort(array, Temp, center + 1, RightEnd);
+//		Merge(array, Temp, L, center + 1, RightEnd);
+//	}
+//}
+
+//void MergeSort(int array[], int size)
+//{
+//	int *Temp = (int *)malloc(size * sizeof(int));
+//	if (Temp)
+//	{
+//		MSort(array, Temp, 0, size - 1);
+//		free(Temp);
+//	}
+//}
+void Merge(int array[], int left, int mid, int right, int extra[])
 {
-	int LeftEnd = R - 1;
-	int p = L, i;
-	int num = RightEnd - L + 1;
-	while (L <= LeftEnd && R <= RightEnd)
-		if (array[L] <= array[R])
-			Temp[p++] = array[L++];
+	int left_i = left;//[left,mid)
+	int right_i = mid;//[mid,right)
+	int extra_i = left;
+	while (left_i < mid && right_i < right)
+	{
+		if (array[left_i] <= array[right_i])
+		{
+			extra[extra_i++] = array[left_i++];
+		}
 		else
-			Temp[p++] = array[R++];
-	while (L <= LeftEnd)
-		Temp[p++] = array[L++];
-	while (R <= RightEnd)
-		Temp[p++] = array[R++];
-	for (i = 0; i<num; i++, RightEnd--)
-		array[RightEnd] = Temp[RightEnd];
-}
-void MSort(int array[], int Temp[], int L, int RightEnd)
-{
-	int center;
-	if (L<RightEnd)
+		{
+			extra[extra_i++] = array[right_i++];
+		}
+	}
+	while (left_i < mid)
 	{
-		center = (L + RightEnd) / 2;
-		MSort(array, Temp, L, center);
-		MSort(array, Temp, center + 1, RightEnd);
-		Merge(array, Temp, L, center + 1, RightEnd);
+		extra[extra_i++] = array[left_i++];
+	}
+	while (right_i < right)
+	{
+		extra[extra_i++] = array[right_i++];
+	}
+	for (int i = left; i < right; i++)
+	{
+		array[i] = extra[i];
 	}
 }
-void Mergesort(int array[], int size)
+
+void __MergeSort(int array[], int left, int right,int extra[])
 {
-	int *Temp = (int *)malloc(size * sizeof(int));
-	if (Temp)
+	if (left == right - 1)
 	{
-		MSort(array, Temp, 0, size - 1);
-		free(Temp);
+		return;
 	}
+	if (left >= right)
+	{
+		return;
+	}
+	int mid = left + (right - left) / 2;
+	__MergeSort(array, left, mid, extra);
+	__MergeSort(array, mid, right, extra);
+	Merge(array, left, mid, right, extra);
+}
+
+void MergeSort(int array[], int size)
+{
+	int *extra = (int *)malloc(sizeof(int)*size);
+	__MergeSort(array, 0, size, extra);
+	free(extra);
 }
