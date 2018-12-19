@@ -20,7 +20,7 @@ void PrintArray(int array[], int size)
 }
 
 
-int Partition_1(int array[], int left, int right)//×óÓÒÏÂ±ê
+int Partition_1(int array[], int left, int right)//å·¦å³ä¸‹æ ‡
 {
 	int begin = left;
 	int end = right;
@@ -43,7 +43,7 @@ int Partition_1(int array[], int left, int right)//×óÓÒÏÂ±ê
 }
 
 
-int Partition_2(int array[], int left, int right)//ÍÚ¿Ó
+int Partition_2(int array[], int left, int right)//æŒ–å‘
 {
 	int begin = left;
 	int end = right;
@@ -66,7 +66,7 @@ int Partition_2(int array[], int left, int right)//ÍÚ¿Ó
 	return begin;
 }
 
-int Partition_3(int array[], int left, int right)//Ç°ºóÖ¸Õë
+int Partition_3(int array[], int left, int right)//å‰åæŒ‡é’ˆ
 {
 	int div = left;
 	int pivot = array[right];
@@ -182,7 +182,7 @@ void ShellSort(int array[], int size)
 	}
 }
 
-void SelectSort(int array[], int size)//ÕÒ×î´óµÄÊı
+void SelectSort(int array[], int size)//æ‰¾æœ€å¤§çš„æ•°
 {
 	for (int i = 1; i < size; i++)
 	{
@@ -196,7 +196,7 @@ void SelectSort(int array[], int size)//ÕÒ×î´óµÄÊı
 	}
 }
 
-void SelectSortOP(int array[], int size)//×î´ó×îĞ¡Ò»ÆğÕÒ 
+void SelectSortOP(int array[], int size)//æœ€å¤§æœ€å°ä¸€èµ·æ‰¾ 
 {
 	int left = 0;
 	int right = size - 1;
@@ -228,14 +228,14 @@ void AdjustDown(int array[],int size,int root)
 {
 	int left = 2 * root + 1;
 	int right = 2 * root + 2;
-	//×óº¢×ÓÔ½½ç
+	//å·¦å­©å­è¶Šç•Œ
 	if (left >= size)
 	{
 		return;
 	}
-	//¼ÙÉè×óº¢×Ó×î´ó
+	//å‡è®¾å·¦å­©å­æœ€å¤§
 	int max = left;
-	//´æÔÚÓÒº¢×Ó£¬ÓÒ>×ó
+	//å­˜åœ¨å³å­©å­ï¼Œå³>å·¦
 	if (right < size && array[right] > array[left])
 	{
 		max = right;	
@@ -250,14 +250,14 @@ void AdjustDown(int array[],int size,int root)
 
 void CreateHeap(int array[], int size)
 {
-	//×îºóÒ»¸ö·ÇÒ¶×Ó½Úµã(×îºóÒ»¸ö½áµãµÄË«Ç×½Úµã)->0
+	//æœ€åä¸€ä¸ªéå¶å­èŠ‚ç‚¹(æœ€åä¸€ä¸ªç»“ç‚¹çš„åŒäº²èŠ‚ç‚¹)->0
 	for (int i = size / 2 - 1; i >= 0; i--)
 	{
 		AdjustDown(array, size, i);
 	}
 }
 
-void HeapSort(int array[], int size)//ÉıĞò½¨´ó¶Ñ
+void HeapSort(int array[], int size)//å‡åºå»ºå¤§å †
 {
 	CreateHeap(array, size);
 	for (int i = 0; i < size; i++)
@@ -267,7 +267,7 @@ void HeapSort(int array[], int size)//ÉıĞò½¨´ó¶Ñ
 	}
 }
 #include<malloc.h>
-//void Merge(int array[], int Temp[], int L, int R, int RightEnd)//ºÏ²¢Á½¸öÓĞĞòĞòÁĞ
+//void Merge(int array[], int Temp[], int L, int R, int RightEnd)//åˆå¹¶ä¸¤ä¸ªæœ‰åºåºåˆ—
 //{
 //	int LeftEnd = R - 1;
 //	int p = L, i;
@@ -351,7 +351,7 @@ void __MergeSort(int array[], int left, int right,int extra[])
 	__MergeSort(array, mid, right, extra);
 	Merge(array, left, mid, right, extra);
 }
-
+//å½’å¹¶
 void MergeSort(int array[], int size)
 {
 	int *extra = (int *)malloc(sizeof(int)*size);
