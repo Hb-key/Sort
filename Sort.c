@@ -6,7 +6,7 @@ void Swap(int *a, int *b)
 	b = tmp;
 }
 
-int Partition_1(int array[], int left, int right)//×óÓÒÏÂ±ê
+int Partition_1(int array[], int left, int right)//Ã—Ã³Ã“Ã’ÃÃ‚Â±Ãª
 {
 	int begin = left;
 	int end = right;
@@ -29,7 +29,7 @@ int Partition_1(int array[], int left, int right)//×óÓÒÏÂ±ê
 }
 
 
-int Partition_2(int array[], int left, int right)//ÍÚ¿Ó
+int Partition_2(int array[], int left, int right)//ÃÃšÂ¿Ã“
 {
 	int begin = left;
 	int end = right;
@@ -63,7 +63,7 @@ void Quick(int array[], int left, int right)
 	Quick(array, div + 1, right);
 }
 
-
+//æµ‹è¯•å‡½æ•°
 void test()
 {
 	
