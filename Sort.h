@@ -43,7 +43,7 @@ int Partition_1(int array[], int left, int right)//左右下标
 }
 
 
-int Partition_2(int array[], int left, int right)//挖坑
+int Partition_2(int array[], int left, int right)//挖坑法
 {
 	int begin = left;
 	int end = right;
