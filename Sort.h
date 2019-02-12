@@ -81,7 +81,7 @@ int Partition_3(int array[], int left, int right)//前后指针
 	Swap(array + div, array + right);
 	return div;
 }
-
+//快速排序
 void _QuickSort(int array[], int left, int right)
 {
 	if (left == right)
