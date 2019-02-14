@@ -166,7 +166,7 @@ void __InsertSort(int array[], int size, int gap)
 		}
 	}
 }
-
+//希尔排序
 void ShellSort(int array[], int size)
 {
 	int gap = size;
