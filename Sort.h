@@ -97,7 +97,7 @@ void _QuickSort(int array[], int left, int right)
 	_QuickSort(array, div + 1, right);
 }
 
-//快排
+//快速排序
 void QuickSort(int array[], int size)
 {
 	_QuickSort(array, 0, size - 1);
