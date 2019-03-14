@@ -248,6 +248,8 @@ void AdjustDown(int array[],int size,int root)
 	AdjustDown(array, size, max);
 }
 
+
+//建堆
 void CreateHeap(int array[], int size)
 {
 	//最后一个非叶子节点(最后一个结点的双亲节点)->0
