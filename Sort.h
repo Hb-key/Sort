@@ -10,7 +10,8 @@ void Swap(int *a, int *b)
 	*b = tmp;
 }
 
-void PrintArray(int array[], int size)
+/
+void      PrintArray（int      array [] ，i nt    size）
 {
 	for (int i = 0; i < size; i++)
 	{
